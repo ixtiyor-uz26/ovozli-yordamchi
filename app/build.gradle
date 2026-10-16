@@ -1,0 +1,37 @@
+plugins {
+    id 'com.android.application'
+}
+
+android {
+    namespace 'uz.ovozli'
+    compileSdk 34
+
+    defaultConfig {
+        applicationId "uz.ovozli"
+        minSdk 26
+        targetSdk 34
+        versionCode 1
+        versionName "1.0"
+    }
+
+    signingConfigs {
+        release {
+            storeFile file('ovozli.jks')
+            storePassword System.getenv('KS_PASS') ?: 'ovozli2026'
+            keyAlias 'ovoz'
+            keyPassword System.getenv('KS_PASS') ?: 'ovozli2026'
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            signingConfig signingConfigs.release
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+}
